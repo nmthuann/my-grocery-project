@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
-import { Search, ShoppingCart, Sun, User2 } from "lucide-react";
+import { Heart, Search, ShoppingCart, Sun, User2 } from "lucide-react";
 import Link from "next/link";
 import Container from "../ui/custom/container";
 
@@ -86,10 +86,37 @@ const TopNavbar = () => {
                         Đăng Nhập
                     </a>
                 </div>
-                <div className="space-x-1 flex items-center text-teal-500 bg-amber-200 font-medium rounded-xl text-base px-2 lg:px-3 xl:px-5 py-2 mr-2">
+                {/* <div className="space-x-1 flex items-center text-teal-500 bg-amber-200 font-medium rounded-xl text-base px-2 lg:px-3 xl:px-5 py-2 mr-2">
+                    <div className="relative">
+                        <ShoppingCart color="#14b8a6" />
+                        <div className="bg-teal-500 rounded-full absolute top-0 right-0 w-[18px] h-[18px] text-[12px] text-amber-200 grid place-items-center translate-x-2 -translate-y-1">
+                            0
+                        </div>
+                    </div> */}
+
+                {/* <a href="#">Giỏ Hàng</a> */}
+                {/* </div> */}
+                <Button
+                    className="space-x-1 bg-amber-200  py-2 mr-2 relative"
+                    variant="secondary"
+                    size="icon"
+                >
                     <ShoppingCart color="#14b8a6" />
-                    <a href="#">Giỏ Hàng</a>
-                </div>
+                    <div className="bg-teal-600 rounded-full absolute top-1 right-0 w-[18px] h-[18px] text-[12px] text-amber-200 grid place-items-center translate-x-1 -translate-y-1">
+                        0
+                    </div>
+                </Button>
+
+                <Button
+                    className="bg-teal-500 border border-teal-500 relative"
+                    variant="secondary"
+                    size="icon"
+                >
+                    <Heart color="white" />
+                    <div className="bg-amber-200 rounded-full absolute top-1 right-0 w-[18px] h-[18px] text-[12px] text-teal-500 grid place-items-center translate-x-1 -translate-y-1">
+                        0
+                    </div>
+                </Button>
                 <Button
                     className="bg-teal-500 border border-teal-500"
                     variant="secondary"

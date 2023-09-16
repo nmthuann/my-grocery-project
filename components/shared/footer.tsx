@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="bg-teal-500 border-t fixed bottom-0 left-0 right-0">
+        <footer className="bg-teal-500 border-t relative bottom-0 left-0 right-0">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-8 md:py-12">
                 {/* Col 1:  */}
                 <div className="col-span-2 md:col-span-1 p-4">

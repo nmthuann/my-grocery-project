@@ -5,6 +5,9 @@ import { Urbanist } from "next/font/google";
 import Navbar from "@/components/shared/navbar";
 import TopNavbar from "@/components/shared/top-navbar";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const font = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

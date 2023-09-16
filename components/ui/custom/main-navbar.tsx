@@ -45,6 +45,11 @@ const drinks: { title: string; href: string; description: string }[] = [
         href: "/docs/primitives/tooltip",
         description: "A popup that displays information...",
     },
+    // {
+    //     title: "Tooltip 2",
+    //     href: "/docs/primitives/tooltip",
+    //     description: "A popup that displays information...",
+    // },
 ];
 
 export function MainNavbar() {
@@ -104,7 +109,7 @@ export function MainNavbar() {
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Bánh Kẹo</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                        <ul className="grid w-[400px]  gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[900px]">
                             {drinks.map((drink) => (
                                 <ListItem
                                     key={drink.title}
