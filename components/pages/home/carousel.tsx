@@ -194,21 +194,21 @@ const Carousel = () => {
     const slideData = [
         {
             id: 0,
-            img: "/images/sale-2.png",
+            img: "/images/image1.png",
             title: "Trending Item",
             mainTitle: "WOMEN'S LATEST FASHION SALE",
             price: "$20",
         },
         {
             id: 1,
-            img: "/images/sale-3.png",
+            img: "/images/image2.png",
             title: "Trending Accessories",
             mainTitle: "MODERN SUNGLASSES",
             price: "$15",
         },
         {
             id: 2,
-            img: "/images/sale-5.png",
+            img: "/images/image3.png",
             title: "Sale Offer",
             mainTitle: "NEW FASHION SUMMER SALE",
             price: "$30",

@@ -31,13 +31,15 @@ const Slide: React.FC<propsType> = ({ img }) => {
                 </div> */}
             </div>
 
-            <Image
-                className="w-[100%] h-[100px] md:h-auto rounded-xl object-cover object-right md:object-left-bottom"
-                src={img}
-                alt="banner"
-                width={2000}
-                height={2000}
-            />
+            <div className="flex justify-center items-center">
+                <Image
+                    className="w-[70%] h-[50px] justify-center md:h-auto rounded-xl object-cover object-right md:object-left-bottom"
+                    src={img}
+                    alt="banner"
+                    width={2000}
+                    height={2000}
+                />
+            </div>
         </div>
     );
 };
