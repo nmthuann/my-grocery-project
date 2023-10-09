@@ -1,13 +1,13 @@
 const Footer = () => {
     return (
-        <footer className="bg-teal-500 border-t relative bottom-0 left-0 right-0">
+        <footer className="bg-white border-t relative bottom-0 left-0 right-0">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-8 md:py-12">
                 {/* Col 1:  */}
                 <div className="col-span-2 md:col-span-1 p-4">
-                    <h3 className="text-2xl text-amber-200 mb-4 font-bold">
-                        Tạp Hóa Thơm Trinh
+                    <h3 className="text-2xl text-slate-900 mb-4 font-bold">
+                        Cửa hàng điện thoại di động
                     </h3>
-                    <p className="text-justify leading-7 text-white">
+                    <p className="text-justify leading-7 text-slate-500">
                         Chúng tôi luôn cố gắng đem đến sự trải nghiệm tốt nhất
                         dành cho bạn.
                     </p>
@@ -15,14 +15,14 @@ const Footer = () => {
 
                 {/* Col 2:  */}
                 <div className="p-4">
-                    <h3 className="text-2xl text-amber-200 mb-4 font-bold">
+                    <h3 className="text-2xl text-slate-900 mb-4 font-bold">
                         Hỗ trợ
                     </h3>
                     <ul className="list-none p-0">
                         <li className="mb-2">
                             <a
                                 href="/"
-                                className="text-white hover:text-yellow-500"
+                                className="text-slate-500 hover:text-yellow-500"
                             >
                                 F.A.Q
                             </a>
@@ -31,7 +31,7 @@ const Footer = () => {
                         <li className="mb-2">
                             <a
                                 href="/"
-                                className="text-white hover:text-yellow-500"
+                                className="text-slate-500 hover:text-yellow-500"
                             >
                                 Chính sách CSKH
                             </a>
@@ -40,7 +40,7 @@ const Footer = () => {
                         <li className="mb-2">
                             <a
                                 href="/"
-                                className="text-white hover:text-yellow-500"
+                                className="text-slate-500 hover:text-yellow-500"
                             >
                                 Dịch Vụ
                             </a>
@@ -49,7 +49,7 @@ const Footer = () => {
                         <li className="mb-2">
                             <a
                                 href="/"
-                                className="text-white hover:text-yellow-500"
+                                className="text-slate-500 hover:text-yellow-500"
                             >
                                 Hỗ trợ
                             </a>
@@ -58,7 +58,7 @@ const Footer = () => {
                         <li>
                             <a
                                 href="/"
-                                className="text-white hover:text-yellow-500"
+                                className="text-slate-500 hover:text-yellow-500"
                             >
                                 Tuyển dụng
                             </a>
@@ -68,7 +68,7 @@ const Footer = () => {
 
                 {/* col 3: */}
                 <div className="p-4">
-                    <h3 className="text-2xl text-amber-200 mb-4 font-bold">
+                    <h3 className="text-2xl text-slate-900 mb-4 font-bold">
                         Liên Hệ
                     </h3>
                     <ul className="list-none pb-4">
@@ -76,7 +76,7 @@ const Footer = () => {
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
-                                fill="white"
+                                fill="gray"
                                 className="w-6 h-6"
                             >
                                 <path
@@ -86,20 +86,23 @@ const Footer = () => {
                                 />
                             </svg>
 
-                            <p className="text-white ml-2"> +84 123456789</p>
+                            <p className="text-slate-500 ml-2">
+                                {" "}
+                                +84 123456789
+                            </p>
                         </li>
 
                         <li className="flex items-center mb-2">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
-                                fill="white"
+                                fill="gray"
                                 className="w-6 h-6"
                             >
                                 <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
                                 <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
                             </svg>
-                            <p className="text-white ml-2">
+                            <p className="text-slate-500 ml-2">
                                 {" "}
                                 thuanminh.2001286@gmail.com
                             </p>
@@ -109,7 +112,7 @@ const Footer = () => {
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
-                                fill="white"
+                                fill="gray"
                                 className="w-6 h-6"
                             >
                                 <path
@@ -118,7 +121,7 @@ const Footer = () => {
                                     clip-rule="evenodd"
                                 />
                             </svg>
-                            <p className="text-white ml-2">
+                            <p className="text-slate-500 ml-2">
                                 {" "}
                                 437, DH 503, Tân Hiệp, Phú Giáo, Bình Dương
                             </p>

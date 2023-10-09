@@ -201,14 +201,14 @@ const Carousel = () => {
         },
         {
             id: 1,
-            img: "/images/image2.png",
+            img: "/images/image6.jpg",
             title: "Trending Accessories",
             mainTitle: "MODERN SUNGLASSES",
             price: "$15",
         },
         {
             id: 2,
-            img: "/images/image3.png",
+            img: "/images/image5.jpg",
             title: "Sale Offer",
             mainTitle: "NEW FASHION SUMMER SALE",
             price: "$30",

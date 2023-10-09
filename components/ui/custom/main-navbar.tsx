@@ -57,7 +57,7 @@ export function MainNavbar() {
         <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Thực Phẩm</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Mới về</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                             <li className="row-span-3">
@@ -90,7 +90,7 @@ export function MainNavbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Đồ uống</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Apple</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                             {drinks.map((drink) => (
@@ -107,7 +107,7 @@ export function MainNavbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Bánh Kẹo</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Samsung</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-[400px]  gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[900px]">
                             {drinks.map((drink) => (
@@ -124,7 +124,7 @@ export function MainNavbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Hóa phẩm</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Xiaomi</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                             {drinks.map((drink) => (
@@ -141,7 +141,7 @@ export function MainNavbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Sữa</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Sonny</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                             {drinks.map((drink) => (
@@ -158,7 +158,7 @@ export function MainNavbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Đông lạnh</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Oppo</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                             {drinks.map((drink) => (
@@ -175,9 +175,7 @@ export function MainNavbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>
-                        Dụng cụ gia dụng
-                    </NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Phụ kiện</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                             {drinks.map((drink) => (
