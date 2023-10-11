@@ -24,6 +24,7 @@ import {
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { toast } from "@/components/ui/use-toast";
+import { useState } from "react";
 
 /**
  * Yêu cầu:
@@ -42,11 +43,35 @@ const defaultValues: Partial<registerFormValues> = {
     // dob: new Date("2023-01-23"),
     firstName: "",
     lastName: "",
+    password: "",
+    confirm_password: "",
     email: "",
-    address: "",
+    // address: "",
 };
 
 export function RegisterForm() {
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newPassword = e.target.value;
+        setPassword(newPassword);
+        // Check if passwords match
+        // Check if passwords match
+        setPasswordsMatch(newPassword === confirmPassword);
+    };
+
+    const handleConfirmPasswordChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const newConfirmPassword = e.target.value;
+        setConfirmPassword(newConfirmPassword);
+
+        // Check if passwords match
+        setPasswordsMatch(password === newConfirmPassword);
+    };
+
     const form = useForm<z.infer<typeof registerFormSchema>>({
         resolver: zodResolver(registerFormSchema),
         defaultValues,
@@ -56,7 +81,16 @@ export function RegisterForm() {
     function onSubmit(data: registerFormValues) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(`Submit ${JSON.stringify(data, null, 2)}`);
+        if (passwordsMatch) {
+            // Passwords match, proceed with form submission
+            // console.log("Submit", data);
+            console.log(`Submit ${JSON.stringify(data, null, 2)}`);
+        } else {
+            // Passwords do not match, show an error message or take appropriate action
+            console.log("Passwords do not match");
+        }
+
+        // console.log(`Submit ${JSON.stringify(data, null, 2)}`);
         // toast({
         //     title: "You submitted the following values:",
         //     description: (
@@ -72,145 +106,123 @@ export function RegisterForm() {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                {/* Tên  */}
-                <FormField
-                    control={form.control}
-                    name="firstName"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Tên</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Your name" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is the name that will be displayed on your
-                                profile and in emails.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                {/* Họ */}
-                <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Họ</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Your Surname" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is the name that will be displayed on your
-                                profile and in emails.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                {/* Giới Tính */}
-                <FormField
-                    control={form.control}
-                    name="gender"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Giới tính</FormLabel>
-                            <div className="relative w-max">
+                <div className="flex flex-row space-x-4">
+                    <FormField
+                        control={form.control}
+                        name="firstName"
+                        render={({ field }) => (
+                            <FormItem className="basis-1/3">
+                                <FormLabel>Tên</FormLabel>
                                 <FormControl>
-                                    <select
-                                        className={cn(
-                                            buttonVariants({
-                                                variant: "outline",
-                                            }),
-                                            "w-[200px] appearance-none bg-transparent font-normal"
-                                        )}
+                                    <Input
+                                        placeholder="Nhập Tên"
                                         {...field}
-                                    >
-                                        <option value="male">Nam</option>
-                                        <option value="female">Nữ</option>
-                                        <option value="other">Khác</option>
-                                    </select>
-                                </FormControl>
-                                <ChevronDownIcon className="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
-                            </div>
-                            <FormDescription>
-                                Set the font you want to use in the dashboard.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                {/* Sinh nhật */}
-                <FormField
-                    control={form.control}
-                    name="dob"
-                    render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                            <FormLabel>Date of birth</FormLabel>
-                            <Popover>
-                                <PopoverTrigger asChild>
-                                    <FormControl>
-                                        <Button
-                                            variant={"outline"}
-                                            className={cn(
-                                                "w-[240px] pl-3 text-left font-normal",
-                                                !field.value &&
-                                                    "text-muted-foreground"
-                                            )}
-                                        >
-                                            {field.value ? (
-                                                format(field.value, "PPP")
-                                            ) : (
-                                                <span>Pick a date</span>
-                                            )}
-                                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                        </Button>
-                                    </FormControl>
-                                </PopoverTrigger>
-                                <PopoverContent
-                                    className="w-auto p-0"
-                                    align="start"
-                                >
-                                    <Calendar
-                                        mode="single"
-                                        selected={field.value}
-                                        onSelect={field.onChange}
-                                        disabled={(date) =>
-                                            date > new Date() ||
-                                            date < new Date("1900-01-01")
-                                        }
-                                        initialFocus
+                                        className="border rounded-md p-2 w-full"
                                     />
-                                </PopoverContent>
-                            </Popover>
-                            <FormDescription>
-                                Your date of birth is used to calculate your
-                                age.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                {/* Địa Chỉ */}
-                <FormField
-                    control={form.control}
-                    name="address"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Địa Chỉ</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Your Address" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is the name that will be displayed on your
-                                profile and in emails.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="lastName"
+                        render={({ field }) => (
+                            <FormItem className="flex-1">
+                                <FormLabel>Họ</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder="Nhập Họ"
+                                        {...field}
+                                        className="border rounded-md p-2 w-full"
+                                    />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    />
+                </div>
+
+                {/* Giới Tính and Sinh nhật in the same row */}
+                <div className="flex space-x-4">
+                    <FormField
+                        control={form.control}
+                        name="gender"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Giới tính</FormLabel>
+                                <div className="relative w-max">
+                                    <FormControl>
+                                        <select
+                                            className={cn(
+                                                buttonVariants({
+                                                    variant: "outline",
+                                                }),
+                                                "w-[125px] appearance-none bg-transparent font-normal"
+                                            )}
+                                            {...field}
+                                        >
+                                            <option value="male">Nam</option>
+                                            <option value="female">Nữ</option>
+                                            <option value="other">Khác</option>
+                                        </select>
+                                    </FormControl>
+                                    <ChevronDownIcon className="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
+                                </div>
+                                {/* <FormDescription>
+                                Set the font you want to use in the dashboard.
+                            </FormDescription> */}
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="dob"
+                        render={({ field }) => (
+                            <FormItem className="flex-1">
+                                <FormLabel>Ngày Sinh</FormLabel>
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                        <FormControl>
+                                            <Button
+                                                variant={"outline"}
+                                                className={cn(
+                                                    "w-[240px] pl-3 text-left font-normal",
+                                                    !field.value &&
+                                                        "text-muted-foreground"
+                                                )}
+                                            >
+                                                {field.value ? (
+                                                    format(field.value, "PPP")
+                                                ) : (
+                                                    <span>Pick a date</span>
+                                                )}
+                                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                            </Button>
+                                        </FormControl>
+                                    </PopoverTrigger>
+                                    <PopoverContent
+                                        className="w-auto p-0"
+                                        align="start"
+                                    >
+                                        <Calendar
+                                            mode="single"
+                                            selected={field.value}
+                                            onSelect={field.onChange}
+                                            disabled={(date) =>
+                                                date > new Date() ||
+                                                date < new Date("1900-01-01")
+                                            }
+                                            initialFocus
+                                        />
+                                    </PopoverContent>
+                                </Popover>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
 
                 {/* Số Điện thoại */}
                 <FormField
@@ -221,7 +233,7 @@ export function RegisterForm() {
                             <FormLabel>Số điện thoại</FormLabel>
                             <FormControl>
                                 <Input
-                                    type="number"
+                                    // type="number"
                                     placeholder="Your Phone number"
                                     {...field}
                                 />
@@ -245,14 +257,67 @@ export function RegisterForm() {
                             <FormControl>
                                 <Input placeholder="Your Email" {...field} />
                             </FormControl>
-                            <FormDescription>
+                            {/* <FormDescription>
                                 This is the name that will be displayed on your
                                 profile and in emails.
-                            </FormDescription>
+                            </FormDescription> */}
                             <FormMessage />
                         </FormItem>
                     )}
                 />
+
+                {/* Password and Confirm Password in the same row */}
+                <div className="flex space-x-8">
+                    <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                            <FormItem className="flex-1">
+                                <FormLabel>Mật Khẩu</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        type="password"
+                                        placeholder="Nhập mật khẩu"
+                                        onChangeCapture={handlePasswordChange}
+                                        {...field}
+                                        className="border rounded-md p-2 w-full"
+                                    />
+                                </FormControl>
+
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="confirm_password"
+                        render={({ field }) => (
+                            <FormItem className="flex-1">
+                                <FormLabel>Xác nhận mật khẩu</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        type="password"
+                                        placeholder="Nhập lại mật khẩu"
+                                        onChangeCapture={
+                                            handleConfirmPasswordChange
+                                        }
+                                        {...field}
+                                        className="border rounded-md p-2 w-full"
+                                    />
+                                </FormControl>
+
+                                <FormMessage />
+                                {!passwordsMatch && (
+                                    <div className="text-red-500">
+                                        Mật Khẩu không trùng với Xác nhận mật
+                                        khẩu
+                                    </div>
+                                )}
+                            </FormItem>
+                        )}
+                    />
+                </div>
                 <Button type="submit">Đăng Ký</Button>
             </form>
         </Form>
@@ -260,16 +325,43 @@ export function RegisterForm() {
 }
 
 const registerFormSchema = z.object({
+    // firstName: z
+    //     .string()
+    //     // .min(10, {
+    //     //     message: "First Name must be at least 2 characters.",
+    //     // })
+    //     .max(30, {
+    //         message: "First Name must not be longer than 30 characters.",
+    //     }),
     firstName: z
         .string()
-        // .min(10, {
-        //     message: "First Name must be at least 2 characters.",
-        // })
-        .max(30, {
+        .min(2, {
+            message: "First Name must be at least 2 characters.",
+        })
+        .max(10, {
             message: "First Name must not be longer than 30 characters.",
-        }),
-    lastName: z.string().min(10, {
-        message: "Username must be at least 2 characters.",
+        })
+        .refine(
+            (value) => {
+                // Sử dụng biểu thức chính quy để kiểm tra xem giá trị không chứa chỉ khoảng trắng hoặc không có giá trị
+                return (
+                    !/\d/.test(value) &&
+                    value.trim() !== "" &&
+                    /^[^\s]*$/.test(value)
+                );
+            },
+            {
+                message: "Tên không được chứa số hoặc khoảng trắng.",
+            }
+        ),
+    lastName: z.string().min(2, {
+        message: "Last Name must be at least 2 characters.",
+    }),
+    password: z.string().min(8, {
+        message: "Password must be at least 8 characters.",
+    }),
+    confirm_password: z.string().min(8, {
+        message: "Password must be at least 8 characters.",
     }),
     gender: z.enum(["male", "female", "other"], {
         invalid_type_error: "Select gender",
@@ -278,14 +370,17 @@ const registerFormSchema = z.object({
     dob: z.date({
         required_error: "A date of birth is required.",
     }),
-    address: z.string().min(10, {
-        message: "Please type Address",
-    }),
-    // phone: z.number().gte(5, {
+    // address: z.string().min(10, {
+    //     message: "Please type Address",
+    // }),
+    // phone: z.number().gte(9, {
     //     message: "Please type Phone",
     // }),
-    phone: z.coerce // SOLUTION
-        .number(),
+    phone: z.string().refine((value) => /^\d{10}$/.test(value), {
+        message: "Số điện thoại phải có đúng 10 chữ số.",
+    }),
+    // phone: z.coerce // SOLUTION
+    //     .number(),
     email: z
         .string({
             required_error: "Please select an email to display.",

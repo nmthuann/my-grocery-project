@@ -1,7 +1,6 @@
-// "use client";
-
 import { Metadata } from "next";
 import { RegisterForm } from "./components/register-form";
+import { CreateEmployeeForm } from "./components/create-employee-form";
 
 export const metadata: Metadata = {
     title: "Đăng ký",
@@ -12,15 +11,16 @@ export default function RegisterPage() {
         <div className="flex flex-col justify-center items-center min-h-screen my-8">
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
                 <div>
-                    <h2 className="text-2xl font-bold tracking-tight">
+                    <h2 className="text-2xl font-bold tracking-tight  mb-2">
                         Đăng Ký
                     </h2>
-                    <p className="text-sm text-muted-foreground">
-                        This is how others will see you on the site.
+                    <p className="text-sm text-muted-foreground ">
+                        Tạo tài khoản để truy cập website!
                     </p>
                 </div>
                 <div className="mt-4">
                     <RegisterForm />
+                    {/* <CreateEmployeeForm /> */}
                 </div>
             </div>
         </div>
