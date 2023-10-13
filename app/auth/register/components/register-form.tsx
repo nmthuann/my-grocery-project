@@ -25,6 +25,7 @@ import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
+import { ErrorInput } from "@/constants/errors/errors";
 
 /**
  * Yêu cầu:
@@ -325,21 +326,13 @@ export function RegisterForm() {
 }
 
 const registerFormSchema = z.object({
-    // firstName: z
-    //     .string()
-    //     // .min(10, {
-    //     //     message: "First Name must be at least 2 characters.",
-    //     // })
-    //     .max(30, {
-    //         message: "First Name must not be longer than 30 characters.",
-    //     }),
     firstName: z
         .string()
         .min(2, {
-            message: "First Name must be at least 2 characters.",
+            message: `${ErrorInput.MIN_ERROR} 2 kí tự.`,
         })
         .max(10, {
-            message: "First Name must not be longer than 30 characters.",
+            message: `${ErrorInput.MAX_ERROR} 10 kí tự.`,
         })
         .refine(
             (value) => {
@@ -351,24 +344,24 @@ const registerFormSchema = z.object({
                 );
             },
             {
-                message: "Tên không được chứa số hoặc khoảng trắng.",
+                message: ErrorInput.NAME_INVALID,
             }
         ),
     lastName: z.string().min(2, {
-        message: "Last Name must be at least 2 characters.",
+        message: `${ErrorInput.MIN_ERROR} 2 kí tự.`,
     }),
     password: z.string().min(8, {
-        message: "Password must be at least 8 characters.",
+        message: ErrorInput.PASSWORD_ERROR,
     }),
     confirm_password: z.string().min(8, {
-        message: "Password must be at least 8 characters.",
+        message: ErrorInput.PASSWORD_ERROR,
     }),
     gender: z.enum(["male", "female", "other"], {
-        invalid_type_error: "Select gender",
-        required_error: "Please select gender.",
+        invalid_type_error: `${ErrorInput.NOT_SELECT_FIELD} giới tính.`,
+        required_error: `${ErrorInput.NOT_SELECT_FIELD} giới tính.`,
     }),
     dob: z.date({
-        required_error: "A date of birth is required.",
+        required_error: `${ErrorInput.NOT_SELECT_FIELD} ngày sinh.`,
     }),
     // address: z.string().min(10, {
     //     message: "Please type Address",
@@ -377,13 +370,13 @@ const registerFormSchema = z.object({
     //     message: "Please type Phone",
     // }),
     phone: z.string().refine((value) => /^\d{10}$/.test(value), {
-        message: "Số điện thoại phải có đúng 10 chữ số.",
+        message: ErrorInput.PHONE_NUMBER_ERROR,
     }),
     // phone: z.coerce // SOLUTION
     //     .number(),
     email: z
         .string({
-            required_error: "Please select an email to display.",
+            required_error: ErrorInput.EMAIL_ERROR,
         })
         .email(),
     // taxCode: z.number().min(10, {
