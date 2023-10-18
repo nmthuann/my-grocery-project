@@ -10,21 +10,33 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { AuthExceptionMessages, ErrorInput } from "@/constants/errors/errors";
+import { Messages } from "@/constants/notifications/message";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import * as z from "zod";
 
 const formSchema = z.object({
-    email: z.string().min(5, {
-        message: "Username must be at least 5 characters.",
-    }),
+    email: z
+        .string()
+        .min(2, {
+            message: `${ErrorInput.MIN_ERROR} 2 kí tự.`,
+        })
+        .email(),
     password: z.string().min(8, {
-        message: "password must be at least 8 characters.",
+        message: `${ErrorInput.MIN_ERROR} 8 kí tự.`,
     }),
 });
 
 export function LoginForm() {
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -35,10 +47,20 @@ export function LoginForm() {
     });
 
     // 2. Define a submit handler.
-    function onSubmit() {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log("Submit");
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        console.log("values:::", values);
+        // callLoginRefetch(values);
+        try {
+            setLoading(true);
+            await axios.post(`/api/auth/login`, values);
+            toast.success(Messages.EMAIL_VALID);
+            router.push("/");
+        } catch (error) {
+            console.log("onSubmit :: Login ::", error);
+            toast.error(AuthExceptionMessages.LOGIN_FAILED);
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -51,11 +73,11 @@ export function LoginForm() {
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input
+                                    placeholder="nhập email để đăng nhập ..."
+                                    {...field}
+                                />
                             </FormControl>
-                            {/* <FormDescription>
-                                This is your public display name.
-                            </FormDescription> */}
                             <FormMessage />
                         </FormItem>
                     )}
@@ -70,7 +92,7 @@ export function LoginForm() {
                             <FormControl>
                                 <Input
                                     type="password"
-                                    placeholder="shadcn"
+                                    placeholder="mật khẩu ..."
                                     {...field}
                                 />
                             </FormControl>

@@ -6,10 +6,12 @@ import Link from "next/link";
 import Container from "../ui/custom/container";
 import { cookies } from "next/headers";
 import { UserNav } from "../pages/home/user-nav";
+import NavbarActions from "../ui/custom/navbar-actions";
+// import NavbarActions from "../ui/custom/navbar-actions";
 
 const TopNavbar = () => {
-    const cookieStore = cookies();
-    const auth = cookieStore.get("user");
+    // const cookieStore = cookies();
+    // const auth = cookieStore.get("user");
 
     return (
         // <Container>
@@ -81,62 +83,7 @@ const TopNavbar = () => {
                     <Search color="gray" />
                 </Button>
             </div>
-            <div className="flex items-center lg:order-2">
-                {/* <div className="flex items-center">
-                    <Link
-                        href="/auth/login"
-                        className="text-slate-900 dark:text-slate-800 hover:text-white hover:bg-slate-500 focus:ring-4 focus:ring-gray-300 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800 font-medium rounded-xl text-base px-2 lg:px-3 xl:px-5 py-2 lg:py-3"
-                    >
-                        {auth ? "Tài Khoản" : "Đăng Nhập"}
-                    </Link>
-                    <User2 color="gray" />
-                </div> */}
-
-                {auth ? (
-                    <>
-                        <div className="flex items-center">
-                            Thuận
-                            <UserNav />
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <Button variant="ghost">
-                            <Link href="/auth/login">Đăng Nhập</Link>
-                            <User2 color="white" />
-                        </Button>
-                    </>
-                )}
-
-                <Button
-                    className="space-x-1 bg-slate-50  py-2 mr-2 relative"
-                    variant="ghost"
-                    size="icon"
-                >
-                    <ShoppingCart color="black" />
-                    <div className="bg-red-600 rounded-full absolute top-1 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
-                        0
-                    </div>
-                </Button>
-
-                <Button
-                    className="space-x-1 bg-slate-50  relative"
-                    variant="secondary"
-                    size="icon"
-                >
-                    <Heart color="black" />
-                    <div className="bg-red-600 rounded-full absolute top-1 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
-                        0
-                    </div>
-                </Button>
-                <Button
-                    className="space-x-5 bg-slate-50"
-                    variant="secondary"
-                    size="icon"
-                >
-                    <Sun color="black" />
-                </Button>
-            </div>
+            <NavbarActions />
         </div>
 
         // {/* </Container> */}
@@ -144,3 +91,61 @@ const TopNavbar = () => {
 };
 
 export default TopNavbar;
+// <div className="flex items-center lg:order-2">
+//     {/* <div className="flex items-center">
+//         <Link
+//             href="/auth/login"
+//             className="text-slate-900 dark:text-slate-800 hover:text-white hover:bg-slate-500 focus:ring-4 focus:ring-gray-300 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800 font-medium rounded-xl text-base px-2 lg:px-3 xl:px-5 py-2 lg:py-3"
+//         >
+//             {auth ? "Tài Khoản" : "Đăng Nhập"}
+//         </Link>
+//         <User2 color="gray" />
+//     </div> */}
+
+//     {auth ? (
+//         <>
+//             <div className="flex items-center">
+//                 Thuận
+//                 <UserNav />
+//             </div>
+//         </>
+//     ) : (
+//         <>
+//             <Button variant="ghost">
+//                 <Link href="/auth/login">Đăng Nhập</Link>
+//                 <User2 color="white" />
+//             </Button>
+//         </>
+//     )}
+
+//     {/* <NavbarActions /> */}
+
+//     <Button
+//         className="space-x-1 bg-slate-50  py-2 mr-2 relative"
+//         variant="ghost"
+//         size="icon"
+//     >
+//         <ShoppingCart color="black" />
+//         <div className="bg-red-600 rounded-full absolute top-1 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
+//             0
+//         </div>
+//     </Button>
+
+//     <Button
+//         className="space-x-1 bg-slate-50  relative"
+//         variant="secondary"
+//         size="icon"
+//     >
+//         <Heart color="black" />
+//         <div className="bg-red-600 rounded-full absolute top-1 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
+//             0
+//         </div>
+//     </Button>
+//     <Button
+//         className="space-x-5 bg-slate-50"
+//         variant="secondary"
+//         size="icon"
+//     >
+//         <Sun color="black" />
+//     </Button>
+// </div>;

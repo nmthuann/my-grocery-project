@@ -1,16 +1,22 @@
+import Link from "next/link";
 import Container from "../ui/custom/container";
-import { MainNavbar } from "../ui/custom/main-navbar";
+import MainNav from "../ui/custom/main-navbar";
+import { getCategories } from "@/actions/get-categories";
 
-const Navbar = () => {
+export const revalidate = 0;
+
+const Navbar = async () => {
+    const categories = await getCategories();
+
     return (
         <div className="border-b">
             <Container>
                 <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-center">
-                    {/* <Link href="/" className="ml-4 flex lg:ml-0 gap-x-2">
-                        <p className="font-bold text-xl">STORE</p>
-                    </Link> */}
-                    {/* <MainNav data={categories} /> */}
-                    {/* <NavbarActions /> */}
+                    <Link href="/" className="ml-4 flex lg:ml-0 gap-x-2">
+                        <p className="text-sm font-medium">khuyến mãi</p>
+                    </Link>
+                    <MainNav data={categories} />
+
                     {/* <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                         <li>
                             <a
@@ -70,7 +76,7 @@ const Navbar = () => {
                             </a>
                         </li>
                     </ul> */}
-                    <MainNavbar />
+                    {/* <MainNavbar /> */}
                 </div>
             </Container>
         </div>
