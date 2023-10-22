@@ -20,7 +20,7 @@ export enum ErrorInput{
     MIN_ERROR = "Phải nhập đủ tối thiểu",
     NOT_SELECT_FIELD = "Vui lòng chọn ",
     LENGTH_ERROR = "Yêu cầu phải đủ",
-
+    PASSWORD_NOT_MATCH = "Mật Khẩu không trùng với Xác nhận mật khẩu",
 }
 
 export enum AuthError{
@@ -49,5 +49,6 @@ export enum AuthExceptionMessages {
   EMAIL_EXSIT = 'Email already exists.',
   VERIFY_MAIL_FAILED = 'Xác thực email thất bại.',
   SEND_MAIL_FAILED = 'Gửi mail thất bại.',
-  REGISTER_EMPLOYEE_FAILED = 'Đăng ký Tài khoản nhân viên thất bại.'
+  REGISTER_EMPLOYEE_FAILED = 'Đăng ký Tài khoản nhân viên thất bại.',
+  REGISTER_CUSTOMER_FAILED = 'Đăng ký thất bại.',
 }

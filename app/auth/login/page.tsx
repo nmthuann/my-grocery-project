@@ -1,19 +1,27 @@
+"use client";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { LoginForm } from "@/app/auth/login/components/user-auth-form";
+import { useState } from "react";
 // import { LoginService } from "@/apis/login.service"
 // import { useEffect, useState } from "react"
-// import { useRouter } from "next/router"
+import { useRouter } from "next/router";
 
-export const metadata: Metadata = {
-    title: "Authentication",
-    description: "Authentication forms built using the components.",
-};
+// export const metadata: Metadata = {
+//     title: "Authentication",
+//     description: "Authentication forms built using the components.",
+// };
 
 export default function LoginPage() {
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    // Callback function để xử lý đăng nhập thành công và cập nhật trạng thái
+    const handleLoginSuccess = () => {
+        setLoggedIn(true);
+    };
     return (
         <div className="justify-center">
             {/* <div className="md:hidden">
@@ -81,7 +89,7 @@ export default function LoginPage() {
                                 Application
                             </p>
                         </div>
-                        <LoginForm />
+                        <LoginForm onLoginSuccess={handleLoginSuccess} />
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             By clicking continue, you agree to our{" "}
                             <Link

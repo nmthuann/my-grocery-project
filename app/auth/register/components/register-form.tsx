@@ -22,9 +22,12 @@ import {
 } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
-import { toast } from "@/components/ui/use-toast";
+import toast from "react-hot-toast";
 import { useState } from "react";
-import { ErrorInput } from "@/constants/errors/errors";
+import { AuthExceptionMessages, ErrorInput } from "@/constants/errors/errors";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { Messages } from "@/constants/notifications/message";
 
 /**
  * Yêu cầu:
@@ -41,8 +44,8 @@ type registerFormValues = z.infer<typeof registerFormSchema>;
 const defaultValues: Partial<registerFormValues> = {
     // name: "Your name",
     // dob: new Date("2023-01-23"),
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     password: "",
     confirm_password: "",
     email: "",
@@ -53,6 +56,9 @@ export function RegisterForm() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newPassword = e.target.value;
@@ -78,38 +84,32 @@ export function RegisterForm() {
     });
 
     // 2. Define a submit handler.
-    function onSubmit(data: registerFormValues) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        if (passwordsMatch) {
-            // Passwords match, proceed with form submission
-            // console.log("Submit", data);
-            console.log(`Submit ${JSON.stringify(data, null, 2)}`);
-        } else {
-            // Passwords do not match, show an error message or take appropriate action
-            console.log("Passwords do not match");
+    async function onSubmit(values: z.infer<typeof registerFormSchema>) {
+        console.log("values:::", values);
+        // callLoginRefetch(values);
+        try {
+            setLoading(true);
+            // const result =
+            await axios.post(`/api/auth/register`, values);
+            // if (result.data.message == AuthExceptionMessages.PASSWORD_WRONG) {
+            //     toast.error(`${AuthExceptionMessages.PASSWORD_WRONG} `);
+            // }
+            toast.success(Messages.EMAIL_VALID);
+            router.push("/");
+        } catch (error) {
+            console.log("onSubmit :: Login ::", error);
+            toast.error(`${AuthExceptionMessages.REGISTER_CUSTOMER_FAILED}`);
+        } finally {
+            setLoading(false);
         }
-
-        // console.log(`Submit ${JSON.stringify(data, null, 2)}`);
-        // toast({
-        //     title: "You submitted the following values:",
-        //     description: (
-        //         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-        //             <code className="text-white">
-        //                 {JSON.stringify(data, null, 2)}
-        //             </code>
-        //         </pre>
-        //     ),
-        // });
     }
-
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <div className="flex flex-row space-x-4">
                     <FormField
                         control={form.control}
-                        name="firstName"
+                        name="first_name"
                         render={({ field }) => (
                             <FormItem className="basis-1/3">
                                 <FormLabel>Tên</FormLabel>
@@ -126,7 +126,7 @@ export function RegisterForm() {
 
                     <FormField
                         control={form.control}
-                        name="lastName"
+                        name="last_name"
                         render={({ field }) => (
                             <FormItem className="flex-1">
                                 <FormLabel>Họ</FormLabel>
@@ -178,7 +178,7 @@ export function RegisterForm() {
 
                     <FormField
                         control={form.control}
-                        name="dob"
+                        name="birthday"
                         render={({ field }) => (
                             <FormItem className="flex-1">
                                 <FormLabel>Ngày Sinh</FormLabel>
@@ -310,8 +310,7 @@ export function RegisterForm() {
                                 <FormMessage />
                                 {!passwordsMatch && (
                                     <div className="text-red-500">
-                                        Mật Khẩu không trùng với Xác nhận mật
-                                        khẩu
+                                        {ErrorInput.PASSWORD_NOT_MATCH}
                                     </div>
                                 )}
                             </FormItem>
@@ -325,7 +324,7 @@ export function RegisterForm() {
 }
 
 const registerFormSchema = z.object({
-    firstName: z
+    first_name: z
         .string()
         .min(2, {
             message: `${ErrorInput.MIN_ERROR} 2 kí tự.`,
@@ -346,7 +345,7 @@ const registerFormSchema = z.object({
                 message: ErrorInput.NAME_INVALID,
             }
         ),
-    lastName: z.string().min(2, {
+    last_name: z.string().min(2, {
         message: `${ErrorInput.MIN_ERROR} 2 kí tự.`,
     }),
     password: z.string().min(8, {
@@ -359,7 +358,7 @@ const registerFormSchema = z.object({
         invalid_type_error: `${ErrorInput.NOT_SELECT_FIELD} giới tính.`,
         required_error: `${ErrorInput.NOT_SELECT_FIELD} giới tính.`,
     }),
-    dob: z.date({
+    birthday: z.date({
         required_error: `${ErrorInput.NOT_SELECT_FIELD} ngày sinh.`,
     }),
     // address: z.string().min(10, {
@@ -382,3 +381,14 @@ const registerFormSchema = z.object({
     //     message: "Please type Phone",
     // }),
 });
+
+//  // Do something with the form values.
+//         // ✅ This will be type-safe and validated.
+//         if (passwordsMatch) {
+//             // Passwords match, proceed with form submission
+//             // console.log("Submit", data);
+//             console.log(`Submit ${JSON.stringify(data, null, 2)}`);
+//         } else {
+//             // Passwords do not match, show an error message or take appropriate action
+//             console.log("Passwords do not match");
+//         }

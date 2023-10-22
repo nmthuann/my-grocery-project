@@ -11,42 +11,59 @@ import Link from "next/link";
 const NavbarActions = () => {
     const router = useRouter();
 
-    const [login, setLogin] = useState(false);
+    //const [login, setLogin] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
 
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             // Simulate an API request to get user data
+    //             const response = await axios.post("/api/auth/login", {}); // Replace with your API endpoint
+    //             if (response.status === 200) {
+    //                 // const userData = await response.json();
+    //                 console.log("check if");
+    //                 //router.push("/");
+    //                 setLogin(true);
+    //             } else {
+    //                 //router.push("/auth/login");
+    //                 console.log("check else");
+    //                 setLogin(false);
+    //             }
+    //         } catch (error) {
+    //             //console.log("check error");
+    //             //router.push("/auth/login");
+    //             setLogin(false);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
+
+    // const [isMounted, setIsMounted] = useState(false);
+
+    // useEffect(() => {
+    //     setIsMounted(true);
+    // }, []);
+
+    // if (!isMounted) {
+    //     return null;
+    // }
+    // Sử dụng useEffect để theo dõi trạng thái loggedIn
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // Simulate an API request to get user data
-                const response = await axios.post("/api/auth/login", {}); // Replace with your API endpoint
-                if (response.status === 200) {
-                    // const userData = await response.json();
-                    console.log("check if");
-                    //router.push("/");
-                    setLogin(true);
-                } else {
-                    //router.push("/auth/login");
-                    console.log("check else");
-                    setLogin(false);
-                }
-            } catch (error) {
-                //console.log("check error");
-                //router.push("/auth/login");
-                setLogin(false);
-            }
-        };
+        // Đây chính là nơi để xử lý các thay đổi khi loggedIn thay đổi
+        // Ví dụ: bạn có thể render lại component hoặc thực hiện các thay đổi tương ứng
 
-        fetchData();
-    }, []);
+        // Ở đây, chúng ta có thể in ra console để kiểm tra khi loggedIn thay đổi
+        console.log("Trạng thái loggedIn đã thay đổi:", loggedIn);
 
-    const [isMounted, setIsMounted] = useState(false);
+        // Bạn có thể thực hiện các hành động khác tùy theo cần
+    }, [loggedIn]);
 
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
-    if (!isMounted) {
-        return null;
-    }
+    // Trong ví dụ này, chúng ta có một nút để thay đổi trạng thái loggedIn
+    // Chỉ để minh họa cách nó hoạt động
+    const toggleLoginStatus = () => {
+        setLoggedIn((prevLoggedIn) => !prevLoggedIn);
+    };
 
     return (
         <div className="flex items-center lg:order-2">
@@ -60,7 +77,7 @@ const NavbarActions = () => {
                     <User2 color="gray" />
                 </div> */}
 
-            {login ? (
+            {/* {loggedIn ? (
                 <>
                     <div className="flex items-center">
                         Thuận
@@ -74,9 +91,21 @@ const NavbarActions = () => {
                         <User2 color="white" />
                     </Button>
                 </>
-            )}
+            )} */}
+
+            <Button variant="ghost" onClick={toggleLoginStatus}>
+                {loggedIn ? (
+                    <Link href="/">Đăng Xuất</Link>
+                ) : (
+                    <Link href="/auth/login">Đăng Nhập</Link>
+                )}
+                <User2 color="white" />
+            </Button>
 
             {/* <NavbarActions /> */}
+            {/* <button onClick={toggleLoginStatus}>
+                {loggedIn ? "Đăng Xuất" : "Đăng Nhập"}
+            </button> */}
 
             <Button
                 className="space-x-1 bg-slate-50  py-2 mr-2 relative"

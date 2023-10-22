@@ -21,6 +21,10 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as z from "zod";
 
+interface LoginFormProps {
+    onLoginSuccess(): void;
+}
+
 const formSchema = z.object({
     email: z
         .string()
@@ -32,8 +36,7 @@ const formSchema = z.object({
         message: `${ErrorInput.MIN_ERROR} 8 kí tự.`,
     }),
 });
-
-export function LoginForm() {
+export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
@@ -52,12 +55,16 @@ export function LoginForm() {
         // callLoginRefetch(values);
         try {
             setLoading(true);
-            await axios.post(`/api/auth/login`, values);
+            const result = await axios.post(`/api/auth/login`, values);
+            // if (result.data.message == AuthExceptionMessages.PASSWORD_WRONG) {
+            //     toast.error(`${AuthExceptionMessages.PASSWORD_WRONG} `);
+            // }
+            onLoginSuccess();
             toast.success(Messages.EMAIL_VALID);
             router.push("/");
         } catch (error) {
             console.log("onSubmit :: Login ::", error);
-            toast.error(AuthExceptionMessages.LOGIN_FAILED);
+            toast.error(`${AuthExceptionMessages.LOGIN_FAILED}`);
         } finally {
             setLoading(false);
         }
@@ -111,4 +118,4 @@ export function LoginForm() {
             </form>
         </Form>
     );
-}
+};

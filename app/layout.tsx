@@ -7,6 +7,8 @@ import TopNavbar from "@/components/shared/top-navbar";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ToastProvider } from "@/providers/toast-provider";
+import ModalProvider from "@/providers/modal-provider";
 
 const font = Urbanist({ subsets: ["latin"] });
 
@@ -23,6 +25,8 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={font.className}>
+                <ModalProvider />
+                <ToastProvider></ToastProvider>
                 <TopNavbar />
                 <Navbar />
                 {children}

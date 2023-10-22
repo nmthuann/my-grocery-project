@@ -1,10 +1,11 @@
+import getNewestProducts from "@/actions/get-newest-product";
 import { getProducts } from "@/actions/get-products";
 import Carousel from "@/components/pages/home/carousel";
 import Container from "@/components/ui/custom/container";
 import ProductList from "@/components/ui/custom/product-list";
 
 const HomePage = async () => {
-    const products = await getProducts({ status: true });
+    const products = await getNewestProducts();
     return (
         <Container>
             <div className="space-y-10 pb-10">
