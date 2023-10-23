@@ -55,12 +55,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
         // callLoginRefetch(values);
         try {
             setLoading(true);
-            const result = await axios.post(`/api/auth/login`, values);
-            // if (result.data.message == AuthExceptionMessages.PASSWORD_WRONG) {
-            //     toast.error(`${AuthExceptionMessages.PASSWORD_WRONG} `);
-            // }
+            const res = await axios.post(`/api/auth/login`, values);
+            if (res.data.message) {
+                toast.error(res.data.message);
+                return;
+            }
             onLoginSuccess();
-            toast.success(Messages.EMAIL_VALID);
+            toast.success(Messages.LOGIN_SUCCESS);
             router.push("/");
         } catch (error) {
             console.log("onSubmit :: Login ::", error);

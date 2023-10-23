@@ -45,23 +45,16 @@ export async function POST(
     //  call api in here
     const register = 
         await axios.post(URL, {email, password, first_name, last_name, gender, birthday, phone});
-    console.log("checkLogin:::", register.data.access_token)
-    const oneDay = 24 * 60 * 60 * 1000;
-    // cookies().set({
-    //     name: 'token',
-    //     value: checkLogin.data.access_token,
-    //     httpOnly: true,
-    //     path: '/', 
-    //     expires: Date.now() - oneDay
-    //   })
-    cookies().set('token', register.data.access_token) // {httpOnly: true, expires: Date.now() - oneDay }
-    console.log(`${cookies().get('token')?.value}`)  
-
-    if(register.data.message === ErrorInput.PASSWORD_ERROR){
+    if(register.data.message){
+      console.log(register.data.message)
+      return NextResponse.json({message: register.data.message});
+    }
+    if(!register.data.message){
+       console.log(register.data.message)
       return NextResponse.json(register.data);
     }
 
-    return NextResponse.json(register.data);
+    // return NextResponse.json(register.data);
   } catch (error) {
     console.log('[CHECK_REGISTER]', error);
     throw new NextResponse(SystemError.INTERNAL_SERVER_ERROR, { status: 500 })

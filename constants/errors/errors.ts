@@ -24,8 +24,11 @@ export enum ErrorInput{
 }
 
 export enum AuthError{
-  LOGIN_FAILED = "Đăng nhập thất bại."
+  LOGIN_FAILED = "Đăng nhập thất bại.",
+
 }
+
+
 
 
 export enum SystemError{
@@ -51,4 +54,10 @@ export enum AuthExceptionMessages {
   SEND_MAIL_FAILED = 'Gửi mail thất bại.',
   REGISTER_EMPLOYEE_FAILED = 'Đăng ký Tài khoản nhân viên thất bại.',
   REGISTER_CUSTOMER_FAILED = 'Đăng ký thất bại.',
+}
+
+
+export enum CartError{
+  PRODUCT_EXIST = "Sản phẩm đã tồn tại trong giỏ hàng.",
+  
 }

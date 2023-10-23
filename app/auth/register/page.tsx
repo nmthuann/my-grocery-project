@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { RegisterForm } from "./components/register-form";
-import { CreateEmployeeForm } from "./components/create-employee-form";
 
 export const metadata: Metadata = {
     title: "Đăng ký",

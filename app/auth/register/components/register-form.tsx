@@ -63,8 +63,6 @@ export function RegisterForm() {
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newPassword = e.target.value;
         setPassword(newPassword);
-        // Check if passwords match
-        // Check if passwords match
         setPasswordsMatch(newPassword === confirmPassword);
     };
 
@@ -73,8 +71,6 @@ export function RegisterForm() {
     ) => {
         const newConfirmPassword = e.target.value;
         setConfirmPassword(newConfirmPassword);
-
-        // Check if passwords match
         setPasswordsMatch(password === newConfirmPassword);
     };
 
@@ -85,17 +81,18 @@ export function RegisterForm() {
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof registerFormSchema>) {
-        console.log("values:::", values);
+        // console.log("values:::", values);
         // callLoginRefetch(values);
         try {
             setLoading(true);
-            // const result =
-            await axios.post(`/api/auth/register`, values);
-            // if (result.data.message == AuthExceptionMessages.PASSWORD_WRONG) {
-            //     toast.error(`${AuthExceptionMessages.PASSWORD_WRONG} `);
-            // }
+            const res = await axios.post(`/api/auth/register`, values);
+            // console.log("values:::", res.data.message);
+            if (res.data.message) {
+                toast.error(res.data.message);
+                return;
+            }
             toast.success(Messages.EMAIL_VALID);
-            router.push("/");
+            router.push("/auth/login");
         } catch (error) {
             console.log("onSubmit :: Login ::", error);
             toast.error(`${AuthExceptionMessages.REGISTER_CUSTOMER_FAILED}`);
@@ -212,7 +209,7 @@ export function RegisterForm() {
                                             onSelect={field.onChange}
                                             disabled={(date) =>
                                                 date > new Date() ||
-                                                date < new Date("1900-01-01")
+                                                date < new Date("1930-01-01")
                                             }
                                             initialFocus
                                         />
@@ -361,17 +358,11 @@ const registerFormSchema = z.object({
     birthday: z.date({
         required_error: `${ErrorInput.NOT_SELECT_FIELD} ngày sinh.`,
     }),
-    // address: z.string().min(10, {
-    //     message: "Please type Address",
-    // }),
-    // phone: z.number().gte(9, {
-    //     message: "Please type Phone",
-    // }),
+
     phone: z.string().refine((value) => /^\d{10}$/.test(value), {
         message: ErrorInput.PHONE_NUMBER_ERROR,
     }),
-    // phone: z.coerce // SOLUTION
-    //     .number(),
+
     email: z
         .string({
             required_error: ErrorInput.EMAIL_ERROR,
