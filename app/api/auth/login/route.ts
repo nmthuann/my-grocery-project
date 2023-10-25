@@ -10,11 +10,11 @@ const URL=`${process.env.SERVER_URL}/auth/login`
 export async function POST(
   req: Request,
 ) {
-     const token = cookies().get('token')?.value;
-    // console.log("token:::", token)
-    if(token){
-      return new NextResponse(Messages.EMAIL_VALID, { status: 200 });
-    }
+    //  const token = cookies().get('token')?.value;
+    // // console.log("token:::", token)
+    // if(token){
+    //   return new NextResponse(Messages.EMAIL_VALID, { status: 200 });
+    // }
 
     const body = await req.json();
 

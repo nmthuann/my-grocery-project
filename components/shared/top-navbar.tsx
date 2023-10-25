@@ -7,6 +7,7 @@ import Container from "../ui/custom/container";
 import { cookies } from "next/headers";
 import { UserNav } from "../pages/home/user-nav";
 import NavbarActions from "../ui/custom/navbar-actions";
+import { AuthProvider, useAuth } from "@/providers/auth-provider";
 // import NavbarActions from "../ui/custom/navbar-actions";
 
 const TopNavbar = () => {
@@ -83,6 +84,7 @@ const TopNavbar = () => {
                     <Search color="gray" />
                 </Button>
             </div>
+
             <NavbarActions />
         </div>
 

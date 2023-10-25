@@ -58,6 +58,10 @@ export enum AuthExceptionMessages {
 
 
 export enum CartError{
-  PRODUCT_EXIST = "Sản phẩm đã tồn tại trong giỏ hàng.",
+  PRODUCT_EXIST = "Sản phẩm đã tồn tại trong giỏ hàng.", 
+}
+
+export enum CheckoutError{
+  PRODUCT_IDS_REQUIRED = "Không có sản phẩm nào được yêu cầu.",
   
 }

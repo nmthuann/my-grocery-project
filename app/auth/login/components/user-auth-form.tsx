@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { AuthExceptionMessages, ErrorInput } from "@/constants/errors/errors";
 import { Messages } from "@/constants/notifications/message";
+import { useAuth } from "@/providers/auth-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import Link from "next/link";
@@ -21,9 +22,9 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as z from "zod";
 
-interface LoginFormProps {
-    onLoginSuccess(): void;
-}
+// interface LoginFormProps {
+//     onLoginSuccess(): void;
+// }
 
 const formSchema = z.object({
     email: z
@@ -36,9 +37,12 @@ const formSchema = z.object({
         message: `${ErrorInput.MIN_ERROR} 8 kí tự.`,
     }),
 });
-export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
+// export const LoginForm: React.FC<LoginFormProps> = () => {
+//{ onLoginSuccess }
+export function LoginForm() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+    const { login } = useAuth();
 
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
@@ -60,7 +64,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
                 toast.error(res.data.message);
                 return;
             }
-            onLoginSuccess();
+            login({
+                email: values.email,
+                name: await res.data.first_name,
+            });
+            //onLoginSuccess();
             toast.success(Messages.LOGIN_SUCCESS);
             router.push("/");
         } catch (error) {
@@ -119,4 +127,4 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
             </form>
         </Form>
     );
-};
+}

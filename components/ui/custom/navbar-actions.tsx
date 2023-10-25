@@ -8,11 +8,12 @@ import axios from "axios";
 import { UserNav } from "@/components/pages/home/user-nav";
 import Link from "next/link";
 import useCart from "@/hooks/use-cart";
+import { useAuth } from "@/providers/auth-provider";
 
 const NavbarActions = () => {
     //const [login, setLogin] = useState(false);
     // const [loggedIn, setLoggedIn] = useState(false);
-
+    const { user, login, logout } = useAuth();
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -38,37 +39,19 @@ const NavbarActions = () => {
                     <User2 color="gray" />
                 </div> */}
 
-            {/* {loggedIn ? (
-                <>
-                    <div className="flex items-center">
-                        Thuận
-                        <UserNav />
-                    </div>
-                </>
-            ) : (
-                <>
-                    <Button variant="ghost">
-                        <Link href="/auth/login">Đăng Nhập</Link>
-                        <User2 color="white" />
-                    </Button>
-                </>
-            )} */}
-
-            {/* <Button variant="ghost" onClick={toggleLoginStatus}>
-                {loggedIn ? (
-                    <Link href="/">Đăng Xuất</Link>
-                ) : (
-                    <Link href="/auth/login">Đăng Nhập</Link>
-                )}
-                <User2 color="white" />
-            </Button> */}
-
             {/* <NavbarActions /> */}
+            {user ? (
+                <div>
+                    <p>Welcome, {user.name}!</p>
+                    <button onClick={logout}>Logout</button>
+                </div>
+            ) : (
+                <Button variant="ghost">
+                    <Link href="/auth/login">Đăng Nhập</Link>
+                    <User2 color="white" />
+                </Button>
+            )}
 
-            <Button variant="ghost">
-                <Link href="/auth/login">Đăng Nhập</Link>
-                <User2 color="white" />
-            </Button>
             <Button
                 onClick={() => router.push("/cart")}
                 className="space-x-1 bg-slate-50  py-2 mr-2 relative"

@@ -1,15 +1,38 @@
-import { create } from 'zustand';
-import { toast } from 'react-hot-toast';
-import { persist, createJSONStorage } from "zustand/middleware"; 
+// import { cookies } from 'next/headers';
+// import { create } from 'zustand';
+// import { persist } from 'zustand/middleware';
 
-import { AlertTriangle } from 'lucide-react';
+// interface UserInfor{
+//     email: string;
+//     access_token: string;
+//     first_name: string;
+// }
+// interface UserStore {
+//     data?: UserInfor;
+  
+// }
 
-interface UserStore {
-    user: any
-}
+// const useAuth =  create(
+//     persist<UserStore>(
+//         (set, get) => ({
+//             data: {},
+//             checkLogin: (data: any) => {
+//                 const token = cookies().get('token')?.value;
+//                 if(!token){
+//                     return false
+//                 }
+//                 return true;
+//             },
+//             getInfor(info: UserInfor){
 
-const useAuth = create<UserStore>(
-    
-)
-
-export default useAuth;
+//             } ,
+//             logout: () => set({ data: {} }),
+//         }),
+            
+//         {
+//             name: "cart-storage",
+//             storage: createJSONStorage(() => localStorage),
+//         }
+//     )
+// );
+// export default useAuth;

@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ToastProvider } from "@/providers/toast-provider";
 import ModalProvider from "@/providers/modal-provider";
+import { AuthProvider } from "@/providers/auth-provider";
 
 const font = Urbanist({ subsets: ["latin"] });
 
@@ -27,9 +28,12 @@ export default function RootLayout({
             <body className={font.className}>
                 <ModalProvider />
                 <ToastProvider></ToastProvider>
-                <TopNavbar />
-                <Navbar />
-                {children}
+                <AuthProvider>
+                    <TopNavbar />
+
+                    <Navbar />
+                    {children}
+                </AuthProvider>
                 <Footer />
             </body>
         </html>

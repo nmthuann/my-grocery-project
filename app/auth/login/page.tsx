@@ -16,12 +16,12 @@ import { useRouter } from "next/router";
 // };
 
 export default function LoginPage() {
-    const [loggedIn, setLoggedIn] = useState(false);
+    // const [loggedIn, setLoggedIn] = useState(false);
 
     // Callback function để xử lý đăng nhập thành công và cập nhật trạng thái
-    const handleLoginSuccess = () => {
-        setLoggedIn(true);
-    };
+    // const handleLoginSuccess = () => {
+    //     setLoggedIn(true);
+    // };
     return (
         <div className="justify-center">
             {/* <div className="md:hidden">
@@ -89,7 +89,8 @@ export default function LoginPage() {
                                 Application
                             </p>
                         </div>
-                        <LoginForm onLoginSuccess={handleLoginSuccess} />
+                        <LoginForm />
+                        {/* onLoginSuccess={handleLoginSuccess} */}
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             By clicking continue, you agree to our{" "}
                             <Link
