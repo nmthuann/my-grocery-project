@@ -2,18 +2,24 @@
 
 import axios from "axios";
 import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
 import { toast } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { Messages } from "@/constants/notifications/message";
-import { SystemError, UnknownError } from "@/constants/errors/errors";
+import {
+    AuthError,
+    MiddlewareError,
+    SystemError,
+    UnknownError,
+} from "@/constants/errors/errors";
 
 const Summary = () => {
     const searchParams = useSearchParams();
     const items = useCart((state) => state.items);
     const removeAll = useCart((state) => state.removeAll);
+    const router = useRouter();
 
     useEffect(() => {
         if (searchParams.get("success")) {
@@ -31,13 +37,17 @@ const Summary = () => {
     }, 0);
 
     const onCheckout = async () => {
-        const response = await axios.post(
-            `${process.env.SERVER_URL}/checkout`,
-            {
-                product_ids: items.map((item) => item.product_id),
-            }
-        );
+        // ${process.env.SERVER_URL}
+        const response = await axios.post(`api/checkout`, {
+            productIds: items.map((item) => item.product_id),
+        });
 
+        if (response.data.message === MiddlewareError.TOKEN_MISSING) {
+            toast.error(AuthError.LOGIN_REQUIRED);
+            router.push("auth/login");
+            return;
+        }
+        console.log(response.data.url);
         window.location = response.data.url;
     };
 

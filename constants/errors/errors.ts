@@ -25,7 +25,7 @@ export enum ErrorInput{
 
 export enum AuthError{
   LOGIN_FAILED = "Đăng nhập thất bại.",
-
+  LOGIN_REQUIRED = "Vui lòng đăng nhập.",
 }
 
 

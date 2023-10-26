@@ -31,9 +31,10 @@ export async function POST(
     if (!productIds || productIds.length === 0) {
         return new NextResponse(CheckoutError.PRODUCT_IDS_REQUIRED, { status: 400 });
     }
-
+    
+    console.log(productIds)
   // call API in here
-  const res_products = await axios.post(URL,productIds,{
+  const res_products = await axios.post(URL, productIds,{
      headers: {
           'Authorization': `Bearer ${token}` 
         }

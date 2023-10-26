@@ -9,6 +9,7 @@ import { UserNav } from "@/components/pages/home/user-nav";
 import Link from "next/link";
 import useCart from "@/hooks/use-cart";
 import { useAuth } from "@/providers/auth-provider";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 
 const NavbarActions = () => {
     //const [login, setLogin] = useState(false);
@@ -81,6 +82,7 @@ const NavbarActions = () => {
             >
                 <Sun color="black" />
             </Button>
+            {/* <ThemeToggle /> */}
         </div>
     );
 };

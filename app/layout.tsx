@@ -10,12 +10,13 @@ import "slick-carousel/slick/slick-theme.css";
 import { ToastProvider } from "@/providers/toast-provider";
 import ModalProvider from "@/providers/modal-provider";
 import { AuthProvider } from "@/providers/auth-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const font = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Tạp Hóa Tân Hiệp",
-    description: "Tạp Hóa Tân Hiệp",
+    title: "Cửa hàng điện thoại di động",
+    description: "Cửa hàng điện thoại di động",
 };
 
 export default function RootLayout({
@@ -26,15 +27,20 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={font.className}>
+                {/* <ThemeProvider
+                    attribute="class"
+                    defaultTheme="dark"
+                    enableSystem
+                > */}
                 <ModalProvider />
                 <ToastProvider></ToastProvider>
                 <AuthProvider>
                     <TopNavbar />
-
                     <Navbar />
                     {children}
                 </AuthProvider>
                 <Footer />
+                {/* </ThemeProvider> */}
             </body>
         </html>
     );
