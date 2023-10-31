@@ -1,7 +1,7 @@
 import { Product } from "@/types/product.interface";
 import qs from "query-string";
 
-const URL=`${process.env.SERVER_URL}/product/get-products`;
+const URL=`${process.env.NEXT_PUBLIC_API_URL}/product/get-products`;
 
 interface Query{
     category_id?: number;

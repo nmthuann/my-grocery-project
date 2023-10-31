@@ -22,10 +22,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as z from "zod";
 
-// interface LoginFormProps {
-//     onLoginSuccess(): void;
-// }
-
 const formSchema = z.object({
     email: z
         .string()
@@ -121,8 +117,8 @@ export function LoginForm() {
                     <Link href="/">Quên mật khẩu ?</Link>
                 </div>
 
-                <Button className="w-full" type="submit">
-                    Submit
+                <Button disabled={loading} className="w-full" type="submit">
+                    Đăng nhập
                 </Button>
             </form>
         </Form>
