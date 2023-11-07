@@ -7,6 +7,7 @@ import useCart from "@/hooks/use-cart";
 import Summary from "./components/summary";
 import CartItem from "./components/cart-item";
 import Container from "@/components/ui/custom/container";
+import { CartError } from "@/constants/errors/errors";
 
 export const revalidate = 0;
 
@@ -31,7 +32,7 @@ const CartPage = () => {
                         <div className="lg:col-span-7">
                             {cart.items.length === 0 && (
                                 <p className="text-neutral-500">
-                                    Chưa có sản phẩm nào được thêm vào giỏ.
+                                    {CartError.CART_NOT_FOUND}
                                 </p>
                             )}
                             <ul>

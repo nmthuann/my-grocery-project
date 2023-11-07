@@ -25,7 +25,7 @@ const useCart = create(
                 );
 
                 if (existingItem) {
-                    return toast(CartError.PRODUCT_EXIST); // msg
+                    return toast.error(CartError.PRODUCT_EXIST); // msg
                 }
 
                 set({ items: [...get().items, data] });

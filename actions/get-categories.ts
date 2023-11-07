@@ -3,7 +3,7 @@ import { Category } from "@/types/category.interface";
 
 const URL=`${process.env.NEXT_PUBLIC_API_URL}/category/get-categories`;
 
-
+ 
 export async function getCategories(): Promise<Category []> {
 //   const res = await fetch(URL,
 //   {

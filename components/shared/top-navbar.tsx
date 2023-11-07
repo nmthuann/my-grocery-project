@@ -31,7 +31,12 @@ const TopNavbar = () => {
     useEffect(() => {
         // Gọi API ở đây và lấy dữ liệu
         // Ví dụ sử dụng fetch:
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/get-model-name`)
+        fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/product/get-model-name`
+            // {
+            //     next: { revalidate: 0 },
+            // }
+        )
             .then((response) => response.json())
             .then((data) => {
                 // Gán dữ liệu từ API cho biến options
