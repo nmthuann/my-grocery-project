@@ -3,7 +3,7 @@ import axios from "axios";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-const URL=`${process.env.SERVER_URL}/auth/register`
+const URL=`${process.env.NEXT_PUBLIC_API_URL}/auth/register`
 export async function POST(
   req: Request,
 ) {
