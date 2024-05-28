@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import img1 from "../../../public/billboard/iphone-14-plus-30929j.jpg";
 import img2 from "../../../public/billboard/iphone-xs-max-30930j.jpg";

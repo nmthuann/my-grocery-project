@@ -83,14 +83,14 @@ export function UserNav() {
                     >
                         <DropdownMenuLabel className="font-normal">
                             <div className="flex flex-col space-y-1">
-                                <p className="text-sm font-medium leading-none">
+                                <span className="text-sm font-medium leading-none">
                                     {/* {admin?.name} */}
                                     ""
-                                </p>
-                                <p className="text-xs leading-none text-muted-foreground">
+                                </span>
+                                <span className="text-xs leading-none text-muted-foreground">
                                     {/* {admin?.email} */}
                                     ""
-                                </p>
+                                </span>
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />

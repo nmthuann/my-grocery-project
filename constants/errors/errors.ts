@@ -9,7 +9,7 @@ export enum ErrorInput{
     INPUT_INVALID = "Nhập thông tin không hợp lệ.",
     NAME_INVALID = "Tên không được chứa số hoặc khoảng trắng.",
     INPUT_WRONG_FORMAT = "Nhập thông tin sai định dạng.",
-    NOT_FULL_FIELD = "Vui lòng không bỏ trống.",
+    NOT_FULL_FIELD = "Vui lòng không được bỏ trống.",
     FIELD_MISSING = "bạn nhập thiếu ",
     PHONE_NUMBER_ERROR = "Số điện thoại phải có đúng 10 chữ số.",
     EMAIL_ERROR = "Nhập Email chưa đúng.",
@@ -20,7 +20,10 @@ export enum ErrorInput{
     MIN_ERROR = "Phải nhập đủ tối thiểu",
     NOT_SELECT_FIELD = "Vui lòng chọn ",
     LENGTH_ERROR = "Yêu cầu phải đủ",
-    PASSWORD_NOT_MATCH = "Mật Khẩu không trùng với Xác nhận mật khẩu",
+    EMAIL_NOT_FOUND = "Không tìm thấy email.",
+    EMAIL_INVALID = "Email không hợp lệ.",
+    PASSWORD_NOT_MATCH="Password and Confirm Password not match.",
+
 }
 
 export enum AuthError{

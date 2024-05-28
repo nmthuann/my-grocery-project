@@ -20,9 +20,10 @@ import useCart from "@/hooks/use-cart";
 import { useAuth } from "@/providers/auth-provider";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { UserNav } from "@/components/shared/user-nav";
+import { LoginDialog } from "@/components/shared/login-dialog";
 
 const NavbarActions = () => {
-    //const [login, setLogin] = useState(false);
+    const [onLoginDialog, setOnLoginDialog] = useState(false);
     // const [loggedIn, setLoggedIn] = useState(false);
     const { user, login, logout } = useAuth();
     const [isMounted, setIsMounted] = useState(false);
@@ -101,7 +102,8 @@ const NavbarActions = () => {
 
             {/* <ThemeToggle /> */}
 
-            <UserNav />
+            {/* <UserNav /> */}
+            <LoginDialog loginOption={true} />
         </div>
     );
 };
