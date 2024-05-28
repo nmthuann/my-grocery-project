@@ -3,7 +3,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import Navbar from "@/components/shared/navbar";
-import TopNavbar from "@/components/shared/top-navbar";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,6 +10,7 @@ import { ToastProvider } from "@/providers/toast-provider";
 import ModalProvider from "@/providers/modal-provider";
 import { AuthProvider } from "@/providers/auth-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
+import Header from "@/components/shared/header";
 
 const font = Urbanist({ subsets: ["latin"] });
 
@@ -27,20 +27,20 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={font.className}>
-                {/* <ThemeProvider
+                <ThemeProvider
                     attribute="class"
-                    defaultTheme="dark"
+                    defaultTheme="system"
                     enableSystem
-                > */}
-                <ModalProvider />
-                <ToastProvider></ToastProvider>
-                <AuthProvider>
-                    <TopNavbar />
-                    <Navbar />
-                    {children}
-                </AuthProvider>
-                <Footer />
-                {/* </ThemeProvider> */}
+                >
+                    <ToastProvider />
+                    <ModalProvider />
+                    <AuthProvider>
+                        <Header />
+                        <Navbar />
+                        {children}
+                    </AuthProvider>
+                    <Footer />
+                </ThemeProvider>
             </body>
         </html>
     );
