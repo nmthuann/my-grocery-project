@@ -7,6 +7,7 @@ const nextConfig = {
             "tailwindui.com",
             "firebasestorage.googleapis.com",
             "res.cloudinary.com",
+            "images.unsplash.com",
         ],
     },
 };

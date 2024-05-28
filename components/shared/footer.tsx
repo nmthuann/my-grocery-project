@@ -2,7 +2,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 const Footer = () => {
     return (
-        <footer className="bg-white border-t relative bottom-0 left-0 right-0">
+        <footer className="bg-slate-200 border-t relative bottom-0 left-0 right-0">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8 md:py-12">
                 {/* Col 1:  */}
                 <div className="col-span-1 md:col-span-1 p-4">
