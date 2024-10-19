@@ -19,7 +19,6 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
 
     return (
         <nav className="mx-6 flex items-center space-x-4 lg:space-x-6">
-            {/* <p>Khuyến mãi</p> */}
             {routes.map((route) => (
                 <Link
                     key={route.href}

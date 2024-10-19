@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ProductList from "./product-list-search";
@@ -21,7 +22,6 @@ const AutocompleteSearchBar = () => {
         const fetchProducts = async () => {
             const { data } = await axios.get(
                 `${process.env.NEXT_PUBLIC_API_URL}/product/get-model-name`
-                // "https://fakestoreapi.com/products"
             );
             setProducts(data);
         };
@@ -85,22 +85,6 @@ const AutocompleteSearchBar = () => {
     }, [selectedProductIndex]);
 
     return (
-        // <div className="absolute top-0 left-0 z-10 text-base text-slate-900 md:w-[100px] lg:w-[300px] xl:w-[500px]">
-        //     <SearchInput
-        //         value={query}
-        //         onChange={handleQueryChange}
-        //         onKeyDown={handleKeyDown}
-        //         inputRef={inputRef}
-        //         placeholder="Bạn muốn mua gì hôm nay?"
-        //     />
-        //     {query !== "" && searchResults.length > 0 && (
-        //         <ProductList
-        //             products={searchResults}
-        //             selectedProductIndex={selectedProductIndex}
-        //             handleProductClick={handleProductClick}
-        //         />
-        //     )}
-        // </div>
         <div className="relative">
             <SearchInput
                 value={query}

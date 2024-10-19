@@ -1,11 +1,9 @@
 "use client";
-import { Button } from "@/components/ui/button";
 
 import {
     BookmarkIcon,
     Boxes,
     Database,
-    Filter,
     Home,
     LucideIcon,
     Network,
@@ -17,12 +15,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import { UserNav } from "../pages/home/user-nav";
-import NavbarActions from "../ui/custom/navbar-actions";
 import { ReactNode, useEffect, useState } from "react";
-import AutocompleteSearchBar from "../ui/custom/search-products/autocomplete-search-bar";
 import InsightRoll from "./insight-roll";
-import { Separator } from "@radix-ui/react-dropdown-menu";
 import { SidebarButton } from "../pages/home/sidebar/sidebar-button";
 import { MobileNavbar } from "./mobile-navbar";
 import DesktopNavbar from "./deskstop-navbar";
@@ -112,8 +106,6 @@ const insights: string[] = [
 ];
 
 const Header = () => {
-    const [selectedOptions, setSelectedOptions] = useState([]);
-    const [searchInput, setSearchInput] = useState("");
     const [options, setOptions] = useState<suggestionList[]>([]);
 
     useEffect(() => {
@@ -142,7 +134,7 @@ const Header = () => {
                     <div className="px-4 lg:px-10">
                         <Link href="/">
                             <h1 className="text-4xl font-semibold dark:text-red-500 text-red-700">
-                                MY PHONE
+                                MY PHONE{" "}
                                 <span className="dark:text-yellow-400 text-yellow-400">
                                     .
                                 </span>

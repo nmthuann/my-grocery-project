@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useRouter } from "next/navigation";
 import InputOTPForm from "./input-otp-form";
@@ -8,7 +8,9 @@ interface CreateAccountProps {
     onCloseDialog: () => void;
 }
 
-export default function CreateAccount({ onCloseDialog }: CreateAccountProps) {
+export default function CreateAccount({
+    onCloseDialog,
+}: Readonly<CreateAccountProps>) {
     // const locations = await getTasks();
     const [emailConfirmed, setEmailConfirmed] = useState(false);
     const [otpSucceeded, setOtpSucceeded] = useState(false);
@@ -35,36 +37,3 @@ export default function CreateAccount({ onCloseDialog }: CreateAccountProps) {
         </div>
     );
 }
-
-{
-    /* <Breadcrumb>
-    <BreadcrumbList>
-        <BreadcrumbItem>
-          
-            <BreadcrumbPage>Create Account</BreadcrumbPage>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-            <Slash />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-            <BreadcrumbPage>Confirm Email</BreadcrumbPage>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-            <Slash />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-            <BreadcrumbPage>Input OTP</BreadcrumbPage>
-        </BreadcrumbItem>
-    </BreadcrumbList>
-</Breadcrumb>; */
-}
-
-// async function getTasks(): Promise<ILocation[]> {
-//     const data = await fs.readFile(
-//         path.join(process.cwd(), path.join(process.cwd(), "/data/vietnam.json"))
-//     );
-
-//     const location = JSON.parse(Promise.all(data));
-
-//     return await location; // z.array(taskSchema).parse(tasks);
-// }

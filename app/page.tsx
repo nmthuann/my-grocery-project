@@ -1,5 +1,4 @@
 import getNewestProducts from "@/actions/get-newest-product";
-import { getProducts } from "@/actions/get-products";
 import BillboardSale from "@/components/pages/home/billboard-sale";
 import BouncingIcon from "@/components/pages/home/bouncing-ring";
 import Carousel from "@/components/pages/home/carousel";

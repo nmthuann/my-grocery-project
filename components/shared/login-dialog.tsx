@@ -1,9 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
-
-import { useRouter } from "next/navigation";
-
 import Link from "next/link";
 import {
     Dialog,
@@ -20,8 +17,6 @@ interface LoginDialogProps {
 }
 
 export const LoginDialog: React.FC<LoginDialogProps> = ({ loginOption }) => {
-    const [loading, setLoading] = useState(false);
-
     const [openDialog, setOpenDialog] = useState(false);
     const [optionDialog, setOptionDialog] = useState(loginOption);
 
@@ -31,17 +26,13 @@ export const LoginDialog: React.FC<LoginDialogProps> = ({ loginOption }) => {
     const [description, setDescription] = useState(
         loginOption ? "Don’t have an account?" : "Already have an account?"
     );
-    // const [action, setAction] = useState(loginOption ? "Confirm" : "Continue");
     const [option, setOption] = useState(loginOption ? "Join here" : "Sign in");
-
-    const router = useRouter();
 
     useEffect(() => {
         setTitle(optionDialog ? "Đăng nhập" : "Tạo một tài khoản");
         setDescription(
             optionDialog ? "Don’t have an account?" : "Already have an account?"
         );
-        // setAction(optionDialog ? "Confirm" : "Continue");
         setOption(optionDialog ? "Đăng ký " : "Đăng nhập");
 
         console.log("optionDialog changed");
@@ -71,8 +62,6 @@ export const LoginDialog: React.FC<LoginDialogProps> = ({ loginOption }) => {
 
     return (
         <div>
-            {/* {" "}
-            //ref={ref} */}
             <Dialog onOpenChange={setOpenDialog}>
                 <DialogTrigger asChild>
                     <Button
